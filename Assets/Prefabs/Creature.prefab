@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3807543208211629149}
   - component: {fileID: 9158067956784506310}
   - component: {fileID: 954468855003847819}
+  - component: {fileID: -6552532430590175313}
+  - component: {fileID: -913207546918273645}
   - component: {fileID: 1948039942334184371}
   - component: {fileID: -1429566185934012381}
   - component: {fileID: 6628639734514670647}
@@ -154,6 +156,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecac759429aa7a4c8c47c1da4ea84c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreatureConsumption
+--- !u!114 &-6552532430590175313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7890132578499118309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bf2e15df8d7d747b4cd792789b3042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreatureReproduction
+--- !u!114 &-913207546918273645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7890132578499118309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6aeecf2c099ad4f981e97672d8b2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreatureStats
+  Energy: 1
+  Age: 0
+  DistanceTravelled: 0
+  FoodEaten: 0
+  Children: 0
+  IsAlive: 1
 --- !u!114 &1948039942334184371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +198,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497236e2779f3d84a9b1c72525657700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Creature
+  genes:
+    Speed: 1
+    Size: 2
+    VisionRange: 2
+    VisionRadius: 3
+    Metabolism: 0.005
+    ReproductionThreshold: 1
+    MutationRate: 0.2
+    ConsumeRange: 5
+    ReproductionRange: 7
+    ReproductionCost: 0.4
+    Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-1429566185934012381
 MonoBehaviour:
   m_ObjectHideFlags: 0

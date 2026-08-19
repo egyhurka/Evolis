@@ -21,6 +21,10 @@ public class SimpleBrain : MonoBehaviour, IBrain
         {
             FindFood();
         }
+        else if (creature.Reproduction.IsReady)
+        {
+            FindPartner();
+        }
         else
         {
             Wander();
@@ -60,15 +64,27 @@ public class SimpleBrain : MonoBehaviour, IBrain
 
     private void ChooseWanderDirection()
     {
-        wanderDirection = new Vector3(
-            Random.Range(-1f, 1f),
-            0f,
-            Random.Range(-1f, 1f)
-        ).normalized;
+        wanderDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
 
-        wanderTimer = Random.Range(
-            MinWanderTime,
-            MaxWanderTime
-        );
+        wanderTimer = Random.Range(MinWanderTime, MaxWanderTime);
+    }
+
+    private void FindPartner()
+    {
+        Creature partner = creature.Sensor.FindClosest<Creature>(other => creature.Reproduction.CanReproduceWith(other));
+
+        if (partner == null)
+        {
+            Wander();
+            return;
+        }
+
+        if (creature.Reproduction.TryReproduce(partner))
+        {
+            creature.Movement.Stop();
+            return;
+        }
+
+        creature.Movement.Move(partner.Position - creature.Position);
     }
 }

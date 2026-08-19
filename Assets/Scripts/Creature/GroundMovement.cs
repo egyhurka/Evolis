@@ -34,11 +34,11 @@ public class GroundMovement : MonoBehaviour, IMovement
         transform.position += movement;
 
         DistanceMoved = movement.magnitude;
-        creature.Stats.DistanceTravelled += DistanceMoved;
     }
 
     public void Stop()
     {
         Velocity = Vector3.zero;
+        DistanceMoved = 0f;
     }
 }

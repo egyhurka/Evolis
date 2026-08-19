@@ -17,6 +17,8 @@ public class CreatureGenesPreset : ScriptableObject
 
     [Header("Reproduction")]
     public float ReproductionThreshold = 0.8f;
+    public float ReproductionRange = 2f;
+    public float ReproductionCost = 0.25f;
     public float MutationRate = 0.05f;
 
     [Header("Appearance")]
@@ -34,6 +36,8 @@ public class CreatureGenesPreset : ScriptableObject
 
             Metabolism = Metabolism,
             ReproductionThreshold = ReproductionThreshold,
+            ReproductionRange = ReproductionRange,
+            ReproductionCost = ReproductionCost,
 
             MutationRate = MutationRate,
 

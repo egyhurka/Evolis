@@ -24,8 +24,12 @@ public class Simulation : MonoBehaviour
     [SerializeField]
     private Vector2 worldSize = new Vector2(50f, 50f);
 
+    public static Simulation Instance { get; private set; }
+
     private void Start()
     {
+        Instance = this;
+
         MakeWorld();
 
         SpawnInitialCreatures();
@@ -53,8 +57,29 @@ public class Simulation : MonoBehaviour
 
             CreatureGenes genes = defaultGene.CreateGenes();
 
+            if (i % 2 == 0)
+            {
+                genes.Color = Color.blue;
+            }
+            else
+            {
+                genes.Color = Color.red;
+            }
+
             creature.Initialize(genes);
         }
+    }
+
+    public Creature SpawnCreature(Vector3 position, CreatureGenes genes)
+    {
+        Creature creature = Spawner.Instance.SpawnNear(creaturePrefab, position, 1.5f);
+
+        if (creature == null)
+            return default;
+
+        creature.Initialize(genes);
+
+        return creature;
     }
 
     private void SpawnInitialFood()

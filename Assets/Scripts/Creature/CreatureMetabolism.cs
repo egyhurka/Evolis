@@ -11,16 +11,7 @@ public class CreatureMetabolism : MonoBehaviour
 
     public void Tick(float deltaTime)
     {
-        creature.Stats.Age += deltaTime;
-
         creature.Stats.Energy = Mathf.Clamp01(creature.Stats.Energy);
-    }
-
-    public void ConsumeMovementEnegy(float distance)
-    {
-        float cost = distance * creature.Genes.Metabolism;
-
-        ConsumeEnergy(cost);
     }
 
     public void AddEnergy(float amount)
@@ -28,7 +19,7 @@ public class CreatureMetabolism : MonoBehaviour
         creature.Stats.Energy += amount;
     }
 
-    private void ConsumeEnergy(float amount)
+    public void ConsumeEnergy(float amount)
     {
         creature.Stats.Energy -= amount;
 
@@ -39,7 +30,7 @@ public class CreatureMetabolism : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         if (!creature.Stats.IsAlive)
             return;

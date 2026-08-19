@@ -19,5 +19,7 @@ MonoBehaviour:
   Metabolism: 0.005
   ConsumeRange: 0.75
   ReproductionThreshold: 0.8
+  ReproductionRange: 2
+  ReproductionCost: 0.25
   MutationRate: 0.05
   Color: {r: 1, g: 1, b: 1, a: 1}

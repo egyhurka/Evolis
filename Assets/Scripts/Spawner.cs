@@ -40,6 +40,22 @@ public class Spawner : MonoBehaviour
         return null;
     }
 
+    public T SpawnNear<T>(T prefab, Vector3 origin, float radius) where T : MonoBehaviour
+    {
+        for (int i = 0; i < maxSpawnAttempts; i++)
+        {
+            Vector2 offset = Random.insideUnitCircle * radius;
+            Vector3 position = origin + new Vector3(offset.x, 0f, offset.y);
+            position.y = 0.5f;
+
+            if (!IsPositionOccupied(position))
+                return Spawn(prefab, position);
+        }
+
+        Debug.LogWarning($"Could not find a nearby spawn position for {typeof(T).Name}");
+        return null;
+    }
+
     private Vector3 GetRandomPosition(Vector2 worldSize)
     {
         float x = Random.Range(-worldSize.x / 2f, worldSize.x / 2f);
@@ -51,6 +67,12 @@ public class Spawner : MonoBehaviour
 
     private bool IsPositionOccupied(Vector3 position)
     {
-        return Physics.CheckSphere(position, spawnCheckRadius);
+        foreach (Collider collider in Physics.OverlapSphere(position, spawnCheckRadius))
+        {
+            if (collider.GetComponent<Creature>() != null || collider.GetComponent<Food>() != null)
+                return true;
+        }
+
+        return false;
     }
 }
